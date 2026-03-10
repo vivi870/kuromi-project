@@ -77,8 +77,8 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
         } catch (IOException e) {
             throw new RuntimeException("头像上传失败：" + e.getMessage());
         }
-        // 4. 更新数据库（存储相对路径/文件名）
-        baseMapper.updateUserImg(userId, newFileName);
+        // 4. 更新数据库（存储相对路径，与返回值保持一致）
+        baseMapper.updateUserImg(userId, "/avatar/" + newFileName);
         // 5. 返回头像访问路径（context-path=/api，资源映射=/avatar/**，所以返回 /avatar/）
         return "/avatar/" + newFileName;
     }
