@@ -1,0 +1,33 @@
+spring:
+    web:
+        resources:
+            static-locations: file:${user.avatar.path},classpath:/static/
+    application:
+        name: kuromi
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/kuromi?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+        username: root
+        password: 123asdjkl
+
+server:
+    port: 8080
+    servlet:
+        context-path: /api
+
+mybatis-plus:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.example.kuromi.entity
+    configuration:
+        map-underscore-to-camel-case: true
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+alipay:
+    appId: 9021000162605057
+    privateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCsCbSRCqogDMGXeXyivIl2foxrPpmGNrYGLPO/0YNUFOiu/aEdHx8+RH7mZXWboF/xAPcGRKB/3akJFHVIImmMJqNtBWK8tKmpc3UOoPtuiS1sOZIm8ADd9WtYrXDdS1UfNS19ibADXLf6Xb468oeivazNvH4sIgqhk7a/iAtRWHzczRch3mGRKw8YldPtVOredzRCQBVPTxj2VCgiqufP9p+M/W7SP0IIISq4DUTRxxLnyaxrcLH8x0Qn8Z155/c0AdOZFxrU7nbfV0Q43F/GUclv1VWqcDzc0+KHaNzcOgfJbv4DtGq0V7BsSzJSxzKgpCBWbVUIhw8l8PvS+RslAgMBAAECggEAcOCNUP0mUpEMFE7pr/z0VIMDrvoL0TvkgnjMFXdqK6jsYqSXKXxaC4j1mkXHvKylRoPTkJFGnZ7aYdLCgOnTRtmzMLzv49DF4SCYFVkan5Px8ah0dIfUic2U+UITY58h4rAJgOzuR8Z2EBeh0RuAUw8QaozaXCqZvxokNdcVVfEd0/d5oErD2YF5XzaMZBVvzhz0ThZUi7Anx2jFJwm5fW0ToqK6vAs3fnpzt0RBWmWOctaJQ991CMr9jQFxBRIJHOieDHiPsuytb7jH8dICbZOAxM1uDOwlFglLIILQWCgUWKc8VeBDOZETs5cxzuzrtiaq2+ylxPjIGaH+ZESYAQKBgQDUBG0DhWyitaqd01SDYGOXLPbnJo0fsvR3mNWBSJoIM1f8XcPrsCvBIJkhKUOMkqsIBbo9m8ykWjEP/MJ7IRq1aC11ANkR3tGSjk4xUA68UHSTYVbbDvTsDAjcSwjb7E1iNv0B4ynbrQzVFvzxBMtpvnB5BWxoyrc++/7GWyYtQQKBgQDPuhmaBLkpqVFedBLnUyi+Ht/H3/U95d0QAecq+QfeYOce7GmVnrsJlh+r6TvI7J/fHFPBJTlQUAwj7XbfoQj+RCCaq7r8XepndSXkBy2hjskrbwvqtZ3JTRyOcN+LzXB0OaVAG/09eoa9xrDD3SkcW2aP0gfRm5mI5evHaQqg5QKBgFNFWbukT8KoL1bFhdADr5nUozSuQ4dLthCzCkg4x6ao48nO2gBbtROpRftsRYeUo3AHL9q6smlqsxJgZ9IMcn0FabUmnBsUtKMnGTbtBpyXzPGFraNkAHYlU+WR4uzdppcImd5/5hTNptiaqsXO6EWj8nDV3HpcBBTMzIgDjL8BAoGAZGNTrBNMSM4C/NqrqA+QSREypK2fH2LPCsVgqmvfWaELEO6/uAcV7PQYKkR1GA0C1hgigd0zbZTByTshj8GLTxYti5Iis4PPnGAJB8JQUxtmLQ9levB6aKZTfqMd5bpK9mBFdE4SfHuSUnSLSJzBGWsyjZ67GJlSAc7bu2sQL+ECgYEAignTlNfuDwX/FECD4lBcRnXhvoDytDLLeb+8pWxKT+6aDwCYxk7rnnZ6J2AS88BYUXRTo9lqdAeAeY4aUugewTu/LjM7bfMlpne3RzUkHf9Py+k89iVjiKSiHO8YU914LCWuD++bcCVraNfqJBJvUM6QoCxQ3YDiU0ci1anbVH0=
+    alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh5sgJGtbWRmhaEnuQPkuR06W8lHSjvbnsrIy9dQv+D5jlHhHjt3yZmpRm6waxubj/i54zvvMXEzr7Ruhewih3kOtqvASLzZfSL2h2H+MibWB/V1Svat3nmiSvNz1cy41UyQb2KQD71Ba9Fce17zPTt8M7WP2wti5MLoG7Ufzs6/jmcMvmolDZvpAuWGF89iZr1qYJDLCv21hl1VnDhq2OUZUC8TpyLEsJ7XZxz4NiU0DzGuEub+YQ+det5rC2w8YdYmTlyN4NAAnLoCmtp56RBPKBG4MTn3XQ022fJADN6YCZGfdgxEbQiSzSyKWR5+EPBLlVqeoxierFX+Z4MDk9wIDAQAB
+    gatewayUrl: https://openapi-sandbox.dl.alipaydev.com/gateway.do
+
+user:
+    avatar:
+        path: D:/project/avatar/

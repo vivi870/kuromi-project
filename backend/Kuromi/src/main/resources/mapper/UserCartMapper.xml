@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.kuromi.mapper.UserCartMapper">
+
+    <!-- 查询用户选中的购物车商品 -->
+    <select id="selectCheckedItems" resultType="CartItem">
+        SELECT * FROM user_cart
+        WHERE username = #{username} AND checked = 1
+    </select>
+
+    <!-- 删除用户选中的购物车商品 -->
+    <delete id="deleteCheckedItems">
+        DELETE FROM user_cart
+        WHERE username = #{username} AND checked = 1
+    </delete>
+
+</mapper>
