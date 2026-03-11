@@ -10,6 +10,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     private static final String AVATAR_ROOT_PATH = "file:D:/project/avatar/";
     private static final String UPLOAD_ROOT_PATH = "file:D:/project/noteimg/";
+    private static final String PROD_IMG_PATH = "file:D:/project/spimg/";
+    private static final String HD_IMG_PATH = "file:D:/project/hdimg/";
+    private static final String VIDEO_PATH = "file:D:/project/video/";
+    private static final String VIDEO_COVER_PATH = "file:D:/project/videocover/";
 
     @Override
     public void addCorsMappings(CorsRegistry registry){
@@ -32,5 +36,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations(AVATAR_ROOT_PATH);
         registry.addResourceHandler("/noteimg/**")
                 .addResourceLocations(UPLOAD_ROOT_PATH);
+        registry.addResourceHandler("/spimg/**")
+                .addResourceLocations(PROD_IMG_PATH);
+        registry.addResourceHandler("/hdimg/**")
+                .addResourceLocations(HD_IMG_PATH);
+        registry.addResourceHandler("/videocover/**")
+                .addResourceLocations(VIDEO_COVER_PATH);
+        registry.addResourceHandler("/pvideo/**")
+                .addResourceLocations(VIDEO_PATH);
     }
 }

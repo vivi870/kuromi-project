@@ -41,4 +41,7 @@ public class SysUser {
 
     /**用户名修改事件*/
     private LocalDateTime updateUsernameTime;
+
+    /** 账号状态：1=正常 0=封禁 */
+    private Integer status;
 }

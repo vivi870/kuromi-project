@@ -40,6 +40,8 @@ public class Product {
     private Integer isDeleted;
     //库存
     private Integer stock;
+    // 上架状态：1=上架 0=下架
+    private Integer status;
     // 创建时间
     private LocalDateTime createTime;
     // 更新时间

@@ -10,6 +10,7 @@ import com.example.kuromi.dto.OrderSendDTO;
 import com.example.kuromi.entity.SysOrder;
 import com.example.kuromi.service.OrderService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -105,6 +106,26 @@ public class OrderController {
         } catch (Exception e) {
             result.put("code", 500);
             result.put("msg", e.getMessage());
+        }
+        return result;
+    }
+
+    // 用户确认收货：已发货(2) -> 已完成(3)
+    @PostMapping("/confirm/{orderNo}")
+    public Map<String, Object> confirmReceive(@PathVariable String orderNo, HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            HttpSession session = request.getSession(false);
+            if (session == null || session.getAttribute("loginUser") == null) {
+                result.put("code", 401); result.put("msg", "未登录"); return result;
+            }
+            SysOrder order = orderService.getOne(new LambdaQueryWrapper<SysOrder>().eq(SysOrder::getOrderNo, orderNo));
+            if (order == null) { result.put("code", 404); result.put("msg", "订单不存在"); return result; }
+            if (order.getPayStatus() != 2) { result.put("code", 400); result.put("msg", "只有已发货订单才能确认收货"); return result; }
+            orderService.update(new LambdaUpdateWrapper<SysOrder>().eq(SysOrder::getOrderNo, orderNo).set(SysOrder::getPayStatus, 3));
+            result.put("code", 200); result.put("msg", "确认收货成功，订单已完成");
+        } catch (Exception e) {
+            result.put("code", 500); result.put("msg", e.getMessage());
         }
         return result;
     }

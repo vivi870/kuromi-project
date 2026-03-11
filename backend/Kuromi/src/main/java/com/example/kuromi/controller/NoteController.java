@@ -105,10 +105,18 @@ public class NoteController {
     }
 
     @PostMapping("/comment-add")
-    public Result addComment(@RequestBody Map<String, Object> map) {
+    public Result addComment(@RequestBody Map<String, Object> map, HttpServletRequest request) {
         try {
             if (map.get("noteId") == null || map.get("content") == null || map.get("type") == null) {
                 return Result.error("笔记ID、评论内容、笔记类型不能为空");
+            }
+            // 封禁检查
+            HttpSession sessionCheck = request.getSession(false);
+            if (sessionCheck != null && sessionCheck.getAttribute("loginUser") != null) {
+                SysUser commentUser = (SysUser) sessionCheck.getAttribute("loginUser");
+                if (commentUser.getStatus() != null && commentUser.getStatus() == 0) {
+                    return Result.error("您的账号已被封禁，无法发表评论");
+                }
             }
             String authorName = map.get("author") != null ? map.get("author").toString() : "游客";
             NoteComment comment = new NoteComment();
@@ -173,6 +181,10 @@ public class NoteController {
                 return Result.error("请先登录");
             }
             SysUser loginUser = (SysUser) session.getAttribute("loginUser");
+            // 封禁检查
+            if (loginUser.getStatus() != null && loginUser.getStatus() == 0) {
+                return Result.error("您的账号已被封禁，无法发布笔记");
+            }
 
             String title = map.get("title") != null ? map.get("title").toString().trim() : "";
             String detail = map.get("detail") != null ? map.get("detail").toString().trim() : "";

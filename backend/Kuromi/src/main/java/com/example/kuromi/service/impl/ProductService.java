@@ -18,33 +18,36 @@ public class ProductService {
     // 根据分类查询商品列表
     public List<Product> getProductListByCategory(String category) {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
-        wrapper.eq("category", category) // 按分类查询
-                .eq("is_deleted", 0);    // 只查未删除的商品
+        wrapper.eq("category", category)
+                .eq("is_deleted", 0)
+                .eq("status", 1); // 只显示上架商品
         return productMapper.selectList(wrapper);
     }
 
     // 搜索商品
     public List<Product> searchProducts(String keyword) {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
-        wrapper.like("name", keyword)   // 模糊搜索商品名称
-                .eq("is_deleted", 0);    // 只查未删除的商品
+        wrapper.like("name", keyword)
+                .eq("is_deleted", 0)
+                .eq("status", 1); // 只显示上架商品
         return productMapper.selectList(wrapper);
     }
 
     // 查询所有商品
     public List<Product> getAllProducts() {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
-        wrapper.eq("is_deleted", 0); // 只返回未删除的有效商品
+        wrapper.eq("is_deleted", 0)
+               .eq("status", 1); // 只显示上架商品
         return productMapper.selectList(wrapper);
     }
 
     // 按ID+分类查询商品详情
     public Product getProductByIdAndCategory(String id, String category) {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
-        wrapper.eq("id", id)          // 匹配商品ID
-                .eq("category", category) // 匹配分类（二次校验，避免ID重复）
-                .eq("is_deleted", 0);    // 只查未删除的商品
-        // selectOne 返回单个商品，无数据时返回null
+        wrapper.eq("id", id)
+                .eq("category", category)
+                .eq("is_deleted", 0)
+                .eq("status", 1); // 只显示上架商品
         return productMapper.selectOne(wrapper);
     }
 }
