@@ -31,3 +31,7 @@ alipay:
 user:
     avatar:
         path: D:/project/avatar/
+
+note:
+    img:
+        path: D:/project/noteimg/

@@ -72,13 +72,13 @@ public class Note {
     /**
      * 创建时间
      */
-    @TableField(value = "createTime")
+    @TableField(value = "createTime", fill = com.baomidou.mybatisplus.annotation.FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    @TableField(value = "updateTime")
+    @TableField(value = "updateTime", fill = com.baomidou.mybatisplus.annotation.FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     @TableField(exist = false) // 标记为非数据库字段
