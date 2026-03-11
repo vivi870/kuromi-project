@@ -11,7 +11,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     @Update("UPDATE sys_user SET user_img = #{userImg}, update_time = NOW() WHERE id = #{userId}")
     int updateUserImg(Long userId, String userImg);
 
-    // 更新用户名（昵称）
-    @Update("UPDATE sys_user SET nickname = #{nickname}, update_username_time = NOW(), update_time = NOW() WHERE id = #{userId}")
-    int updateNickname(Long userId, String nickname);
+    // 更新用户名（username）
+    @Update("UPDATE sys_user SET username = #{username}, update_username_time = NOW(), update_time = NOW() WHERE id = #{userId}")
+    int updateNickname(Long userId, String username);
 }

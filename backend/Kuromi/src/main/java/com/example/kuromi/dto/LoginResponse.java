@@ -13,4 +13,6 @@ public class LoginResponse {
     private Boolean isLoggedIn;
     /** 昵称（可选） */
     private String nickname;
+    /** 用户头像路径 */
+    private String userImg;
 }

@@ -32,7 +32,7 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
 
     // 登录验证
     public SysUser login(String username, String password) {
-        // 1. 先根据用户名查询用户（查不到直接返回null）
+        // 1. 先根据用户名查询用户
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SysUser::getUsername, username);
         SysUser user = this.getOne(queryWrapper);

@@ -53,6 +53,7 @@ public class UserController {
         response.setUsername(user.getUsername());
         response.setIsLoggedIn(true);
         response.setNickname(user.getNickname());
+        response.setUserImg(user.getUserImg());
 
         return Result.success(response);
     }
@@ -169,6 +170,8 @@ public class UserController {
             String newNickname = params.get("newNickname");
             boolean success = sysUserService.updateNickname(loginUser.getId(), newNickname);
             if (success) {
+                // 同步更新 Session 中的 username 和 nickname
+                loginUser.setUsername(newNickname);
                 loginUser.setNickname(newNickname);
                 session.setAttribute("loginUser", loginUser);
                 result.put("code", 200);
